@@ -94,7 +94,7 @@ begin
   require 'json'
   
   File.open(File.expand_path("../ntee_categories.json", __FILE__), 'r') do |file|
-    JSON.parse(file).each do |attributes|
+    JSON.load(file).each do |attributes|
       NTEE::Category.new.tap do |category|
         category.attributes = attributes
         NTEE.add_category!(category)
