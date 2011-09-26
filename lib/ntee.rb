@@ -17,7 +17,7 @@ module NTEE
     end
     
     def parent=(parent)
-      if parent && parent.subcategories[code] != self
+      if parent && parent[code] != self
         parent.add_subcategory!(self) 
       end
       
@@ -28,6 +28,45 @@ module NTEE
       subcategories[subcategory.code.to_s] = subcategory
       subcategory.parent = self
       subcategories
+    end
+    
+    def as_json(options={})
+      hsh = {
+        'code' => code,
+        'name' => name
+      }
+      
+      hsh['subcategories'] = subcategories.values.as_json(options) if subcategories && subcategories.count > 0
+      
+      hsh
+    end
+    
+    def attributes=(attributes)
+      attributes.each do |name, value|
+        case name.to_s
+        when "code"
+          self.code = value
+        when "name"
+          self.name = value
+        when "parent"
+          self.parent = value
+        when "subcategories"
+          subcats = value.collect do |subcat|
+            case subcat
+            when Category
+              subcat
+            when Hash
+              Category.new.tap { |cat| cat.attributes = subcat }
+            else
+              raise "Subcategory #{value.inspect} is neither a Category nor a Hash"
+            end
+          end
+          
+          subcats.each do |subcat|
+            add_subcategory!(subcat)
+          end
+        end
+      end
     end
   end
   
@@ -52,11 +91,14 @@ module NTEE
 end
 
 begin
-  require 'yaml'
+  require 'json'
   
-  File.open(File.expand_path("../ntee_categories.yml", __FILE__), 'r') do |file|
-    YAML.load(file).each do |code, category|
-      NTEE.add_category!(category)
+  File.open(File.expand_path("../ntee_categories.json", __FILE__), 'r') do |file|
+    JSON.parse(file).each do |attributes|
+      NTEE::Category.new.tap do |category|
+        category.attributes = attributes
+        NTEE.add_category!(category)
+      end
     end
   end
 rescue

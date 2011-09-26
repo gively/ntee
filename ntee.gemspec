@@ -14,4 +14,7 @@ Gem::Specification.new do |gem|
   gem.name          = "ntee"
   gem.require_paths = ["lib"]
   gem.version       = NTEE::VERSION
+
+  gem.add_development_dependency 'i18n'
+  gem.add_development_dependency 'activesupport', '>= 3.0'
 end
