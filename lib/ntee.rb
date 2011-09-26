@@ -49,17 +49,17 @@ module NTEE
   
   self.root_categories = {}
   self.all_categories = {}
+end
+
+begin
+  require 'yaml'
   
-  begin
-    require 'yaml'
-    
-    File.open(File.expand_path("../ntee_categories.yml", __FILE__), 'r') do |file|
-      YAML.load(file).each do |code, category|
-        add_category!(category)
-      end
+  File.open(File.expand_path("../ntee_categories.yml", __FILE__), 'r') do |file|
+    YAML.load(file).each do |code, category|
+      NTEE.add_category!(category)
     end
-  rescue
-    puts "WARNING: Couldn't load NTEE categories!"
-    puts $!
   end
+rescue
+  puts "WARNING: Couldn't load NTEE categories!"
+  puts $!
 end
