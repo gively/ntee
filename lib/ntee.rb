@@ -24,6 +24,14 @@ module NTEE
       @parent = parent
     end
     
+    def ancestors
+      if parent
+        [parent] + parent.ancestors
+      else
+        []
+      end
+    end
+    
     def add_subcategory!(subcategory)
       subcategories[subcategory.code.to_s] = subcategory
       subcategory.parent = self
