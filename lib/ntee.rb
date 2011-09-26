@@ -59,5 +59,7 @@ module NTEE
       end
     end
   rescue
+    puts "WARNING: Couldn't load NTEE categories!"
+    puts $!
   end
 end
