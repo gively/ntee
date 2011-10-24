@@ -1896,6 +1896,10 @@
             "name": "Adult Day Care"
           },
           {
+            "code": "P72",
+            "name": "Half-Way House"
+          },
+          {
             "code": "P73",
             "name": "Group Homes"
           },
