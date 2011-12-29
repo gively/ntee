@@ -33,7 +33,7 @@ module NTEE
     end
     
     def descendants
-      (subcategories + subcategories.map(&:descendants)).flatten
+      (subcategories.values + subcategories.values.map(&:descendants)).flatten
     end
     
     def add_subcategory!(subcategory)
