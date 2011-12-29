@@ -85,8 +85,13 @@ module NTEE
   class << self
     attr_accessor :root_categories, :all_categories
       
-    def category(code)
-      all_categories[code.to_s]
+    def category(cat_or_code)
+      case cat_or_code
+      when NTEE::Category
+        cat_or_code
+      else
+        all_categories[cat_or_code.to_s]
+      end
     end
     
     def add_category!(category)
