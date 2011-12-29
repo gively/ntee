@@ -32,6 +32,10 @@ module NTEE
       end
     end
     
+    def descendants
+      (subcategories + subcategories.map(&:descendants)).flatten
+    end
+    
     def add_subcategory!(subcategory)
       subcategories[subcategory.code.to_s] = subcategory
       subcategory.parent = self
