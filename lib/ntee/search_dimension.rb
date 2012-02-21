@@ -17,7 +17,7 @@ module NTEE
       
       if category
         # we got an NTEE code as our value, let's convert it to a hierarchical path
-        self.value = self.class.values_for_category(category)
+        self.value = self.class.values_for_category(category).last
       else
         super
       end
