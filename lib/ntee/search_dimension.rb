@@ -24,7 +24,7 @@ module NTEE
     end
     
     def values_for_category(category)
-      values_for_path(category.ancestors.reverse + [category]).map(&:code))
+      values_for_path((category.ancestors.reverse + [category]).map(&:code))
     end
   
     def label
