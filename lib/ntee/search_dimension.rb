@@ -11,6 +11,21 @@ module NTEE
     def category
       NTEE.category(leaf_value)
     end
+    
+    def value=(new_value)
+      category = NTEE.category(new_value)
+      
+      if category
+        # we got an NTEE code as our value, let's convert it to a hierarchical path
+        self.value = values_for_category(category)
+      else
+        super
+      end
+    end
+    
+    def values_for_category(category)
+      values_for_path(category.ancestors.reverse + [category]).map(&:code))
+    end
   
     def label
       category ? category.name : super
