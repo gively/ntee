@@ -15,6 +15,10 @@ category.ancestors # [NTEE.category("R60"), NTEE.category("R")]
 
 Easy-peasy!
 
+## search_dimensions integration
+
+The file `lib/ntee/search_dimension.rb` defines a few classes you can use in conjunction with Gively's `search_dimensions` gem to deal with NTEE categories stored in a Solr search index.  `NTEE::HierarchicalDimension` lets you treat the categories as a hierarchical tree, and `NTEE::FlatDimension` lets you treat them as a plain string field.
+
 ## Licensing
 
 This gem is Copyright &copy; 2011-2012 Gively, Inc. and is released under the MIT license.  For more details, please see the LICENSE file.
