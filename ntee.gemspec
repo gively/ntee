@@ -6,7 +6,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["nbudin@gively.com"]
   gem.description   = %q{Utilities to support the Urban Institute's National Taxonomy of Exempt Entities}
   gem.summary       = %q{NTEE utilities for US nonprofit entity categorization}
-  gem.homepage      = ""
+  gem.homepage      = "https://github.com/gively/ntee"
 
   gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   gem.files         = `git ls-files`.split("\n")
