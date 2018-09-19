@@ -8,6 +8,10 @@ module NTEE
       self.subcategories ||= {}
     end
 
+    def to_s
+      "#{name} (#{code})"
+    end
+
     def inspect
       "<NTEE Category #{code} (#{name})>"
     end
@@ -105,6 +109,23 @@ module NTEE
 
   self.root_categories = {}
   self.all_categories = {}
+
+  def self.as_list
+    @as_list ||= sort_by_code(flattened_categories)
+  end
+
+  private
+
+  def self.flattened_categories
+    all_categories.map do |parent_category|
+      c = parent_category[1]
+      [c.to_s, c.code]
+    end
+  end
+
+  def self.sort_by_code(arr)
+    arr.sort {|a, b| a[1] <=> b[1] }
+  end
 end
 
 begin
