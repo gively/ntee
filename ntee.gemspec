@@ -17,4 +17,5 @@ Gem::Specification.new do |gem|
 
   gem.add_development_dependency 'i18n'
   gem.add_development_dependency 'activesupport', '>= 3.0'
+  gem.add_development_dependency 'rake'
 end
