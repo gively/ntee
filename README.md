@@ -15,6 +15,12 @@ category.ancestors # [NTEE.category("R60"), NTEE.category("R")]
 
 Easy-peasy!
 
+There is also a helper method to make this easy to build Rails selection dropdowns
+
+```ruby
+  NTEE.as_list
+```
+
 ## search_dimensions integration
 
 The file `lib/ntee/search_dimension.rb` defines a few classes you can use in conjunction with Gively's `search_dimensions` gem to deal with NTEE categories stored in a Solr search index.  `NTEE::HierarchicalDimension` lets you treat the categories as a hierarchical tree, and `NTEE::FlatDimension` lets you treat them as a plain string field.
@@ -22,3 +28,12 @@ The file `lib/ntee/search_dimension.rb` defines a few classes you can use in con
 ## Licensing
 
 This gem is Copyright &copy; 2011-2012 Gively, Inc. and is released under the MIT license.  For more details, please see the LICENSE file.
+
+## Testing and Debugging
+
+To test in console
+
+```shell
+bundle install
+bundle exec rake test:console
+```
