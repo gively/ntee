@@ -2,10 +2,16 @@ require 'ntee/version'
 
 module NTEE
   class Category
-    attr_accessor :name, :code, :subcategories, :parent
+    attr_accessor :code, :subcategories, :parent
+    attr_writer :name
 
     def initialize
       self.subcategories ||= {}
+    end
+
+    def name
+      # strip non-ascii characters
+      @name.gsub(/[\u0080-\u00ff]/, "")
     end
 
     def to_s
